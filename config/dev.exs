@@ -32,4 +32,4 @@ config :picnic, Picnic.Repo,
   username: "postgres",
   password: "postgres",
   database: "picnic_dev",
-  size: 10 # The amount of database connections in the pool
+  pool_size: 10 # The amount of database connections in the pool
