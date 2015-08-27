@@ -10,7 +10,7 @@ config :picnic, Picnic.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "y5/f+IuEXciJb8cN8xNMsxA9J1fjU63I6w9bChwmi+auZexJmXztawx/SbyVRQRN",
-  render_errors: [default_format: "html"],
+  render_errors: [accepts: "html"],
   pubsub: [name: Picnic.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
