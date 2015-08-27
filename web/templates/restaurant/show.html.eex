@@ -1,13 +1,13 @@
-<h2>Show restaurants</h2>
+<h2>Show restaurant</h2>
 
 <ul>
 
   <li>
     <strong>Name:</strong>
-    <%= @restaurants.name %>
+    <%= @restaurant.name %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: restaurant_path(@conn, :edit, @restaurants) %>
+<%= link "Edit", to: restaurant_path(@conn, :edit, @restaurant) %>
 <%= link "Back", to: restaurant_path(@conn, :index) %>

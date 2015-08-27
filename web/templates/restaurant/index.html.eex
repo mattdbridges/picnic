@@ -9,18 +9,18 @@
     </tr>
   </thead>
   <tbody>
-<%= for restaurants <- @restaurants do %>
+<%= for restaurant <- @restaurants do %>
     <tr>
-      <td><%= restaurants.name %></td>
+      <td><%= restaurant.name %></td>
 
       <td class="text-right">
-        <%= link "Show", to: restaurant_path(@conn, :show, restaurants), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: restaurant_path(@conn, :edit, restaurants), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: restaurant_path(@conn, :delete, restaurants), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Show", to: restaurant_path(@conn, :show, restaurant), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: restaurant_path(@conn, :edit, restaurant), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: restaurant_path(@conn, :delete, restaurant), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New restaurants", to: restaurant_path(@conn, :new) %>
+<%= link "New restaurant", to: restaurant_path(@conn, :new) %>

@@ -3,7 +3,7 @@ defmodule Picnic.RestaurantController do
 
   alias Picnic.Restaurant
 
-  plug :scrub_params, "restaurants" when action in [:create, :update]
+  plug :scrub_params, "restaurant" when action in [:create, :update]
 
   def index(conn, _params) do
     restaurants = Repo.all(Restaurant)
@@ -15,11 +15,11 @@ defmodule Picnic.RestaurantController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"restaurants" => restaurants_params}) do
-    changeset = Restaurant.changeset(%Restaurant{}, restaurants_params)
+  def create(conn, %{"restaurant" => restaurant_params}) do
+    changeset = Restaurant.changeset(%Restaurant{}, restaurant_params)
 
     case Repo.insert(changeset) do
-      {:ok, _restaurants} ->
+      {:ok, _restaurant} ->
         conn
         |> put_flash(:info, "Restaurant created successfully.")
         |> redirect(to: restaurant_path(conn, :index))
@@ -29,36 +29,36 @@ defmodule Picnic.RestaurantController do
   end
 
   def show(conn, %{"id" => id}) do
-    restaurants = Repo.get!(Restaurant, id)
-    render(conn, "show.html", restaurants: restaurants)
+    restaurant = Repo.get!(Restaurant, id)
+    render(conn, "show.html", restaurant: restaurant)
   end
 
   def edit(conn, %{"id" => id}) do
-    restaurants = Repo.get!(Restaurant, id)
-    changeset = Restaurant.changeset(restaurants)
-    render(conn, "edit.html", restaurants: restaurants, changeset: changeset)
+    restaurant = Repo.get!(Restaurant, id)
+    changeset = Restaurant.changeset(restaurant)
+    render(conn, "edit.html", restaurant: restaurant, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "restaurants" => restaurants_params}) do
-    restaurants = Repo.get!(Restaurant, id)
-    changeset = Restaurant.changeset(restaurants, restaurants_params)
+  def update(conn, %{"id" => id, "restaurant" => restaurant_params}) do
+    restaurant = Repo.get!(Restaurant, id)
+    changeset = Restaurant.changeset(restaurant, restaurant_params)
 
     case Repo.update(changeset) do
-      {:ok, restaurants} ->
+      {:ok, restaurant} ->
         conn
         |> put_flash(:info, "Restaurant updated successfully.")
-        |> redirect(to: restaurant_path(conn, :show, restaurants))
+        |> redirect(to: restaurant_path(conn, :show, restaurant))
       {:error, changeset} ->
-        render(conn, "edit.html", restaurants: restaurants, changeset: changeset)
+        render(conn, "edit.html", restaurant: restaurant, changeset: changeset)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    restaurants = Repo.get!(Restaurant, id)
+    restaurant = Repo.get!(Restaurant, id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
-    Repo.delete!(restaurants)
+    Repo.delete!(restaurant)
 
     conn
     |> put_flash(:info, "Restaurant deleted successfully.")

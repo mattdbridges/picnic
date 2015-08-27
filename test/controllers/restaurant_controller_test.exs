@@ -17,24 +17,24 @@ defmodule Picnic.RestaurantControllerTest do
 
   test "renders form for new resources", %{conn: conn} do
     conn = get conn, restaurant_path(conn, :new)
-    assert html_response(conn, 200) =~ "New restaurants"
+    assert html_response(conn, 200) =~ "New restaurant"
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, restaurant_path(conn, :create), restaurants: @valid_attrs
+    conn = post conn, restaurant_path(conn, :create), restaurant: @valid_attrs
     assert redirected_to(conn) == restaurant_path(conn, :index)
     assert Repo.get_by(Restaurant, @valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, restaurant_path(conn, :create), restaurants: @invalid_attrs
-    assert html_response(conn, 200) =~ "New restaurants"
+    conn = post conn, restaurant_path(conn, :create), restaurant: @invalid_attrs
+    assert html_response(conn, 200) =~ "New restaurant"
   end
 
   test "shows chosen resource", %{conn: conn} do
-    restaurants = Repo.insert! %Restaurant{}
-    conn = get conn, restaurant_path(conn, :show, restaurants)
-    assert html_response(conn, 200) =~ "Show restaurants"
+    restaurant = Repo.insert! %Restaurant{}
+    conn = get conn, restaurant_path(conn, :show, restaurant)
+    assert html_response(conn, 200) =~ "Show restaurant"
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
@@ -44,28 +44,28 @@ defmodule Picnic.RestaurantControllerTest do
   end
 
   test "renders form for editing chosen resource", %{conn: conn} do
-    restaurants = Repo.insert! %Restaurant{}
-    conn = get conn, restaurant_path(conn, :edit, restaurants)
-    assert html_response(conn, 200) =~ "Edit restaurants"
+    restaurant = Repo.insert! %Restaurant{}
+    conn = get conn, restaurant_path(conn, :edit, restaurant)
+    assert html_response(conn, 200) =~ "Edit restaurant"
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    restaurants = Repo.insert! %Restaurant{}
-    conn = put conn, restaurant_path(conn, :update, restaurants), restaurants: @valid_attrs
-    assert redirected_to(conn) == restaurant_path(conn, :show, restaurants)
+    restaurant = Repo.insert! %Restaurant{}
+    conn = put conn, restaurant_path(conn, :update, restaurant), restaurant: @valid_attrs
+    assert redirected_to(conn) == restaurant_path(conn, :show, restaurant)
     assert Repo.get_by(Restaurant, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    restaurants = Repo.insert! %Restaurant{}
-    conn = put conn, restaurant_path(conn, :update, restaurants), restaurants: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit restaurants"
+    restaurant = Repo.insert! %Restaurant{}
+    conn = put conn, restaurant_path(conn, :update, restaurant), restaurant: @invalid_attrs
+    assert html_response(conn, 200) =~ "Edit restaurant"
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    restaurants = Repo.insert! %Restaurant{}
-    conn = delete conn, restaurant_path(conn, :delete, restaurants)
+    restaurant = Repo.insert! %Restaurant{}
+    conn = delete conn, restaurant_path(conn, :delete, restaurant)
     assert redirected_to(conn) == restaurant_path(conn, :index)
-    refute Repo.get(Restaurant, restaurants.id)
+    refute Repo.get(Restaurant, restaurant.id)
   end
 end
