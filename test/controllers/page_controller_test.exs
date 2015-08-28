@@ -3,6 +3,6 @@ defmodule Picnic.PageControllerTest do
 
   test "GET /" do
     conn = get conn(), "/"
-    assert html_response(conn, 200) =~ "id=\"chat\""
+    assert html_response(conn, 200) =~ "id=\"restaurants\""
   end
 end

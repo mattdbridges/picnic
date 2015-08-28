@@ -20,11 +20,11 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 
 // import socket from "./socket"
 //
-import Chat from "./components/chat"
+import Restaurants from "./components/restaurants"
 
 class App {
   static init() {
-    React.render(<Chat count={3}/>, document.getElementById("chat"))
+    React.render(<Restaurants source="/api/restaurants" />, document.getElementById("restaurants"))
   }
 }
 
