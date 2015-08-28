@@ -2,7 +2,7 @@ defmodule Picnic.Router do
   use Picnic.Web, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ~w(html)
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -10,7 +10,7 @@ defmodule Picnic.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ~w(json)
   end
 
   scope "/", Picnic do
@@ -19,6 +19,12 @@ defmodule Picnic.Router do
     get "/", PageController, :index
 
     resources "/restaurants", RestaurantController
+  end
+
+  scope "/api", Picnic, as: "api" do
+    pipe_through :api
+
+    resources "/restaurants", API.RestaurantController
   end
 
   # Other scopes may use custom stacks.
