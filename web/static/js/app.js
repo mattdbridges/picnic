@@ -22,6 +22,12 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 //
 import Chat from "./components/chat"
 
-React.render(<Chat count={3}/>, document.getElementById("chat"))
+class App {
+  static init() {
+    React.render(<Chat count={3}/>, document.getElementById("chat"))
+  }
+}
 
-export default Chat;
+window.onload = () => App.init()
+
+export default App;
