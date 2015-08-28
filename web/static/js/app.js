@@ -19,3 +19,9 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+//
+import Chat from "./components/chat"
+
+React.render(<Chat count={3}/>, document.getElementById("chat"))
+
+export default Chat;

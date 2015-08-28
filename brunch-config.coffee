@@ -1,14 +1,11 @@
 exports.config =
   files:
     javascripts:
-      joinTo:
-        'js/app.js'
+      joinTo: 'js/app.js'
     stylesheets:
-      joinTo:
-        'css/app.css'
+      joinTo: 'css/app.css'
     templates:
-      joinTo:
-        'js/app.js'
+      joinTo: 'js/app.js'
   conventions:
     assets:
       /^(web\/static\/assets)/
